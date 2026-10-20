@@ -1,0 +1,35 @@
+{
+  "name": "prueba-qaautomation-pw-cucumber",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test:playwright",
+    "test:playwright": "playwright test",
+    "test:cucumber": "cucumber-js",
+    "test:cucumber:headed": "cross-env HEADLESS=false cucumber-js",
+    "test:cucumber:ui": "cucumber-js --tags \"@UI\"",
+    "test:cucumber:ui:headed": "cross-env HEADLESS=false cucumber-js --tags \"@UI\"",
+    "test:cucumber:dry": "cucumber-js --dry-run",
+    "allure:generate": "allure generate ./allure-results --clean --output ./allure-report",
+    "allure:open": "allure open ./allure-report",
+    "allure:report": "npm run allure:generate && npm run allure:open",
+    "test:all": "npm run test:playwright && npm run test:cucumber",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@cucumber/cucumber": "^13.3.0",
+    "@cucumber/messages": "^34.2.1",
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.5",
+    "allure": "^3.21.0",
+    "allure-cucumberjs": "^3.14.0",
+    "cross-env": "^10.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}

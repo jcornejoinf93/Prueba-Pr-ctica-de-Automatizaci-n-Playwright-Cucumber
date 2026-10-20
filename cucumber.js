@@ -1,7 +1,7 @@
 module.exports = {
   default: {
     paths: ['features/**/*.feature'],
-    requireModule: ['ts-node/register'],
+    requireModule: ['dotenv/config', 'ts-node/register'],
     require: ['features/**/*.ts'],
     format: [
       'progress',

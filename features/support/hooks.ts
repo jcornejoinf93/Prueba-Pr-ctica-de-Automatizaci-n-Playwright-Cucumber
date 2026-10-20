@@ -2,11 +2,16 @@ import {
   After,
   AfterAll,
   Before,
-  BeforeAll,
   setDefaultTimeout,
 } from '@cucumber/cucumber';
-import { chromium, type Browser } from '@playwright/test';
+import {
+  chromium,
+  request,
+  type Browser,
+} from '@playwright/test';
 import { DocumentoPage } from '../../pages/DocumentoPage';
+import { DocumentoAPIPage } from '../../pages/DocumentoAPIPage';
+import { LoginAPIPage } from '../../pages/LoginAPIPage';
 import { LoginPage } from '../../pages/LoginPage';
 import { PlaywrightWorld } from './world';
 
@@ -14,15 +19,11 @@ setDefaultTimeout(60_000);
 
 let browser: Browser | undefined;
 
-BeforeAll(async () => {
-  browser = await chromium.launch({
-    headless: process.env.HEADLESS !== 'false',
-  });
-});
-
-Before(async function (this: PlaywrightWorld) {
+Before({ tags: 'not @api' }, async function (this: PlaywrightWorld) {
   if (!browser) {
-    throw new Error('El navegador de Playwright no fue inicializado.');
+    browser = await chromium.launch({
+      headless: process.env.HEADLESS !== 'false',
+    });
   }
 
   this.context = await browser.newContext();
@@ -31,8 +32,20 @@ Before(async function (this: PlaywrightWorld) {
   this.documentoPage = new DocumentoPage(this.page);
 });
 
-After(async function (this: PlaywrightWorld) {
+Before({ tags: '@api' }, async function (this: PlaywrightWorld) {
+  const baseUrl =
+    process.env.API_BASE_URL ?? process.env.BASE_URL ?? 'http://localhost:3000';
+  this.apiContext = await request.newContext({ baseURL: baseUrl });
+  this.loginAPIPage = new LoginAPIPage(this.apiContext, baseUrl);
+  this.documentoAPIPage = new DocumentoAPIPage(this.apiContext);
+});
+
+After({ tags: 'not @api' }, async function (this: PlaywrightWorld) {
   await this.context?.close();
+});
+
+After({ tags: '@api' }, async function (this: PlaywrightWorld) {
+  await this.apiContext?.dispose();
 });
 
 AfterAll(async () => {

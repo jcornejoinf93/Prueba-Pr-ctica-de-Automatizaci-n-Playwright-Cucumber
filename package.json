@@ -10,6 +10,7 @@
     "test:cucumber:headed": "cross-env HEADLESS=false cucumber-js",
     "test:cucumber:ui": "cucumber-js --tags \"@UI\"",
     "test:cucumber:ui:headed": "cross-env HEADLESS=false cucumber-js --tags \"@UI\"",
+    "test:cucumber:api": "cucumber-js --tags \"@api\" --format summary",
     "test:cucumber:dry": "cucumber-js --dry-run",
     "allure:generate": "allure generate ./allure-results --clean --output ./allure-report",
     "allure:open": "allure open ./allure-report",
@@ -29,6 +30,7 @@
     "allure": "^3.21.0",
     "allure-cucumberjs": "^3.14.0",
     "cross-env": "^10.1.0",
+    "dotenv": "^18.0.8",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   }

@@ -39,10 +39,7 @@ export class DocumentoPage {
   }
 
   private get documentTable(): Locator {
-    return this.page.getByRole('table', {
-      name: 'Tabla de Documentos Tributarios',
-      exact: true
-    });
+    return this.page.getByRole('table', {name: 'Tabla de Documentos Tributarios', exact: true});
   }
 
   private documentRow(folio: string): Locator {

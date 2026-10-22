@@ -1,3 +1,4 @@
+@UI
 Feature: Gestión de documentos tributarios
 
   Background:

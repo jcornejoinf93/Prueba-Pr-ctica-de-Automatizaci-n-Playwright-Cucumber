@@ -1,5 +1,5 @@
 import { DataTable, Then, When } from '@cucumber/cucumber';
-import { PlaywrightWorld } from '../support/world';
+import { PlaywrightWorld } from '../../support/world';
 
 const rowValues = (table: DataTable) => {
   const values = table.rowsHash();

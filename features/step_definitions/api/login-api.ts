@@ -1,6 +1,6 @@
 import { Then, When } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
-import { PlaywrightWorld } from '../support/world';
+import { PlaywrightWorld } from '../../support/world';
 
 When('envío la solicitud de login con las credenciales configuradas',
   async function (this: PlaywrightWorld) {

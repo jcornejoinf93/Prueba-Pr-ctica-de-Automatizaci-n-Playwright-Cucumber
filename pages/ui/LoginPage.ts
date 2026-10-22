@@ -1,13 +1,12 @@
 import { expect, type Page } from '@playwright/test';
-
-const defaultBaseUrl = 'http://localhost:3000';
+import { getBaseUrl } from '../../config/environment';
 
 export class LoginPage {
   private readonly baseUrl: string;
 
   constructor(
     private readonly page: Page,
-    baseUrl = process.env.BASE_URL ?? defaultBaseUrl,
+    baseUrl = getBaseUrl(),
   ) {
     this.baseUrl = baseUrl;
   }

@@ -1,13 +1,12 @@
 import type { APIRequestContext, APIResponse } from '@playwright/test';
-
-const defaultBaseUrl = 'http://localhost:3000';
+import { getBaseUrl } from '../../config/environment';
 
 export class LoginAPIPage {
   private readonly loginUrl: string;
 
   constructor(
     private readonly apiRequest: APIRequestContext,
-    baseUrl = process.env.API_BASE_URL ?? process.env.BASE_URL ?? defaultBaseUrl
+    baseUrl = getBaseUrl()
   ) {
     this.loginUrl = `${baseUrl.replace(/\/+$/, '')}/api/auth/login`;
   }

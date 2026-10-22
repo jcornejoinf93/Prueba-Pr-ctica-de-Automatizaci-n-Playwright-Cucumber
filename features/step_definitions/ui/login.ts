@@ -1,5 +1,5 @@
 import { Given, Then, When } from '@cucumber/cucumber';
-import { PlaywrightWorld } from '../support/world';
+import { PlaywrightWorld } from '../../support/world';
 
 Given('Usuario se encuentra en la pagina para iniciar sesion',
   async function (this: PlaywrightWorld) {

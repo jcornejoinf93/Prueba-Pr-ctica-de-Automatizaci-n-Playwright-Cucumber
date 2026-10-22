@@ -11,3 +11,4 @@ node_modules/
 /allure-report/
 /reports/cucumber-report.html
 /reports/cucumber-report.json
+/reports/allure-cucumberjs-reporter.log

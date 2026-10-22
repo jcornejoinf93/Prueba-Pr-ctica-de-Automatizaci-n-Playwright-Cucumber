@@ -9,11 +9,12 @@ import {
   request,
   type Browser,
 } from '@playwright/test';
-import { DocumentoPage } from '../../pages/DocumentoPage';
-import { DocumentoAPIPage } from '../../pages/DocumentoAPIPage';
-import { LoginAPIPage } from '../../pages/LoginAPIPage';
-import { LoginPage } from '../../pages/LoginPage';
+import { DocumentoPage } from '../../pages/ui/DocumentoPage';
+import { DocumentoAPIPage } from '../../pages/api/DocumentoAPIPage';
+import { LoginAPIPage } from '../../pages/api/LoginAPIPage';
+import { LoginPage } from '../../pages/ui/LoginPage';
 import { PlaywrightWorld } from './world';
+import { getBaseUrl } from '../../config/environment';
 
 setDefaultTimeout(60_000);
 
@@ -33,8 +34,7 @@ Before({ tags: 'not @api' }, async function (this: PlaywrightWorld) {
 });
 
 Before({ tags: '@api' }, async function (this: PlaywrightWorld) {
-  const baseUrl =
-    process.env.API_BASE_URL ?? process.env.BASE_URL ?? 'http://localhost:3000';
+  const baseUrl = getBaseUrl();
   this.apiContext = await request.newContext({ baseURL: baseUrl });
   this.loginAPIPage = new LoginAPIPage(this.apiContext, baseUrl);
   this.documentoAPIPage = new DocumentoAPIPage(this.apiContext);

@@ -7,7 +7,7 @@ module.exports = {
       'progress',
       ['html', 'reports/cucumber-report.html'],
       ['json', 'reports/cucumber-report.json'],
-      'allure-cucumberjs/reporter',
+      ['allure-cucumberjs/reporter', 'reports/allure-cucumberjs-reporter.log'],
     ],
     formatOptions: {
       snippetInterface: 'async-await',
